@@ -77,7 +77,7 @@ class TimerViewModel extends ChangeNotifier {
   }
 
   Color setColor() {
-    return Colors.blue;
+    return count == 0 ? Color.fromARGB(255, 155, 255, 159) : Colors.white;
   }
 
   double setHeight(double height) {

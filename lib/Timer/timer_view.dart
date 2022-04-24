@@ -27,7 +27,12 @@ class TimerViewBody extends StatelessWidget {
       children: [
         Column(
           children: [
-            Expanded(child: Container()),
+            Expanded(child:
+                Consumer<TimerViewModel>(builder: (context, value, child) {
+              return Container(
+                color: vm.setColor(),
+              );
+            })),
             AnimatedContainer(
               duration: const Duration(milliseconds: 1000),
               color: Colors.yellow[400],
