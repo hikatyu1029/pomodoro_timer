@@ -9,11 +9,16 @@ class TimerViewModel extends ChangeNotifier {
   late int count = 300;
   late Timer _timer;
 
+  /// work finish:0
+  /// rest finish:1
+  late int mode = 0;
+
   final AudioCache _cache = AudioCache(
     fixedPlayer: AudioPlayer(),
   );
 
-  static const SOUND_DATA_UP = 'girls_voice.mp3';
+  static const FINISH_SOUND = 'girls_voice.mp3';
+  static const REST_FINISH_SOUND = 'girls_voice_fight.mp3';
 
   void start() {
     print(count.toString());
@@ -32,8 +37,16 @@ class TimerViewModel extends ChangeNotifier {
     count--;
     if (count <= 0) {
       stop();
-      _cache.loadAll([SOUND_DATA_UP]);
-      _cache.play(SOUND_DATA_UP);
+      switch (mode) {
+        case 0:
+          _cache.loadAll([FINISH_SOUND]);
+          _cache.play(FINISH_SOUND);
+          break;
+        case 1:
+          _cache.loadAll([REST_FINISH_SOUND]);
+          _cache.play(REST_FINISH_SOUND);
+          break;
+      }
     }
     notifyListeners();
   }
@@ -46,7 +59,8 @@ class TimerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setTime(int t) {
+  void setTime(int t, int m) {
+    mode = m;
     setCount = t;
     count = setCount;
     notifyListeners();

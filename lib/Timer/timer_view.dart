@@ -30,7 +30,7 @@ class TimerViewBody extends StatelessWidget {
             Expanded(child: Container()),
             AnimatedContainer(
               duration: const Duration(milliseconds: 1000),
-              color: Colors.yellow[200],
+              color: Colors.yellow[400],
               height: Provider.of<TimerViewModel>(context)
                   .setHeight(MediaQuery.of(context).size.height),
             ),
@@ -73,10 +73,11 @@ class TimerViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DefaultButton(
-                    onPressed: () => vm.setTime(1500),
+                    onPressed: () => vm.setTime(1500, 0),
                     child: Text("25 minutes")),
                 DefaultButton(
-                    onPressed: () => vm.setTime(300), child: Text("5 minutes")),
+                    onPressed: () => vm.setTime(300, 1),
+                    child: Text("5 minutes")),
               ],
             )
           ],
