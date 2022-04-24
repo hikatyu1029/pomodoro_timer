@@ -76,7 +76,7 @@ class TimerViewBody extends StatelessWidget {
                     onPressed: () => vm.setTime(1500),
                     child: Text("25 minutes")),
                 DefaultButton(
-                    onPressed: () => vm.setTime(3), child: Text("5 minutes")),
+                    onPressed: () => vm.setTime(300), child: Text("5 minutes")),
               ],
             )
           ],
