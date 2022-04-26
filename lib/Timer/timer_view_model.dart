@@ -9,6 +9,11 @@ class TimerViewModel extends ChangeNotifier {
   late int count = 300;
   late Timer _timer;
 
+  /// doing : 1
+  /// stop : 0
+  late bool _doingFlg = false;
+  bool get doingFlg => _doingFlg;
+
   /// work finish:0
   /// rest finish:1
   late int mode = 0;
@@ -27,10 +32,14 @@ class TimerViewModel extends ChangeNotifier {
       countDownStart();
     });
     _timer.isActive;
+    _doingFlg = true;
+    notifyListeners();
   }
 
   void stop() {
     _timer.cancel();
+    _doingFlg = false;
+    notifyListeners();
   }
 
   void countDownStart() {
@@ -56,6 +65,7 @@ class TimerViewModel extends ChangeNotifier {
   void reset() {
     count = setCount;
     _timer.cancel();
+    _doingFlg = false;
     notifyListeners();
   }
 
