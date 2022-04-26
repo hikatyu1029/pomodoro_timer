@@ -57,7 +57,11 @@ class TimerViewBody extends StatelessWidget {
                   width: 100, //横幅
                   height: 50, //高さ
                   child: ElevatedButton(
-                    onPressed: vm.doingFlg ? () => vm.stop() : () => vm.start(),
+                    onPressed: vm.count == 0
+                        ? null
+                        : vm.doingFlg
+                            ? () => vm.stop()
+                            : () => vm.start(),
                     child: vm.doingFlg ? Text("Stop") : Text("Start"),
                     style: ElevatedButton.styleFrom(
                         primary: vm.doingFlg ? Colors.red : Colors.green),
@@ -77,7 +81,7 @@ class TimerViewBody extends StatelessWidget {
                     onPressed: () => vm.setTime(1500, 0),
                     child: Text("25 minutes")),
                 DefaultButton(
-                    onPressed: () => vm.setTime(300, 1),
+                    onPressed: () => vm.setTime(3, 1),
                     child: Text("5 minutes")),
               ],
             )
