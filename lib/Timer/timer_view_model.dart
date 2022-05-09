@@ -60,8 +60,6 @@ class TimerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void countStop() {}
-
   void reset() {
     count = setCount;
     _timer.cancel();
