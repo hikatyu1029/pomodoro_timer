@@ -12,15 +12,15 @@ void main() {
     vm.stop();
     expect(vm.doingFlg, false);
 
-    int c = vm.count;
+    int c = vm.conf.count;
     vm.countDownStart();
-    expect(vm.count, c - 1);
+    expect(vm.conf.count, c - 1);
 
     vm.reset();
     expect(vm.doingFlg, false);
 
     vm.setTime(500, 1);
-    expect(vm.setCount, 500);
+    expect(vm.conf.setCount, 500);
     expect(vm.mode, 1);
 
     expect(vm.calcCount(), vm.addZero(500 ~/ 60) + ":" + vm.addZero(500 % 60));

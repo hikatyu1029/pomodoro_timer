@@ -4,10 +4,11 @@ import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
+import '../Config/config.dart';
+
 class TimerViewModel extends ChangeNotifier {
-  late int setCount = 300;
-  late int count = 300;
   late Timer _timer;
+  var conf = Config();
 
   /// doing : 1
   /// stop : 0
@@ -26,9 +27,9 @@ class TimerViewModel extends ChangeNotifier {
   static const REST_FINISH_SOUND = 'girls_voice_fight.mp3';
 
   void start() {
-    print(count.toString());
+    print(conf.count.toString());
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      print(count.toString());
+      print(conf.count.toString());
       countDownStart();
     });
     _timer.isActive;
@@ -43,8 +44,8 @@ class TimerViewModel extends ChangeNotifier {
   }
 
   void countDownStart() {
-    count--;
-    if (count <= 0) {
+    conf.count--;
+    if (conf.count <= 0) {
       stop();
       switch (mode) {
         case 0:
@@ -61,7 +62,6 @@ class TimerViewModel extends ChangeNotifier {
   }
 
   void reset() {
-    count = setCount;
     _timer.cancel();
     _doingFlg = false;
     notifyListeners();
@@ -69,14 +69,13 @@ class TimerViewModel extends ChangeNotifier {
 
   void setTime(int t, int m) {
     mode = m;
-    setCount = t;
-    count = setCount;
+    conf.setCount = t;
     notifyListeners();
   }
 
   String calcCount() {
-    int minute = count ~/ 60;
-    int seconds = count % 60;
+    int minute = conf.count ~/ 60;
+    int seconds = conf.count % 60;
     return addZero(minute) + ":" + addZero(seconds);
   }
 
@@ -85,11 +84,11 @@ class TimerViewModel extends ChangeNotifier {
   }
 
   Color setColor() {
-    return count == 0 ? Color.fromARGB(255, 155, 255, 159) : Colors.white;
+    return conf.count == 0 ? Color.fromARGB(255, 155, 255, 159) : Colors.white;
   }
 
   double setHeight(double height) {
-    var h = height * ((count - 1) / (setCount - 1));
+    var h = height * ((conf.count - 1) / (conf.setCount - 1));
     return h < 0 ? 0 : h;
   }
 }

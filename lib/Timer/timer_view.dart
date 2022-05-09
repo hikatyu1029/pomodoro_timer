@@ -57,7 +57,7 @@ class TimerViewBody extends StatelessWidget {
                   width: 100, //横幅
                   height: 50, //高さ
                   child: ElevatedButton(
-                    onPressed: vm.count == 0
+                    onPressed: vm.conf.count == 0
                         ? null
                         : vm.doingFlg
                             ? () => vm.stop()
