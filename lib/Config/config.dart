@@ -7,10 +7,14 @@ class Config {
   }
 
   // 設定中タイマー
-  int setCount = 300;
+  int setCount = 1500;
 
   // 現在のカウント
-  int count = 300;
+  int count = 1500;
+
+  int workTime = 1500;
+
+  int restTime = 300;
 
   // 連続再生フラグ
   bool continueFlg = false;
@@ -19,8 +23,16 @@ class Config {
     count = setCount;
   }
 
-  void setTiome(int t) {
-    setCount = t;
-    count = t;
+  void setTime(int m) {
+    switch (m) {
+      case 0:
+        setCount = workTime;
+        count = workTime;
+        break;
+      case 1:
+        setCount = restTime;
+        count = restTime;
+        break;
+    }
   }
 }

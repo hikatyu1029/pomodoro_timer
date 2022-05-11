@@ -19,7 +19,7 @@ void main() {
     vm.reset();
     expect(vm.doingFlg, false);
 
-    vm.setTime(500, 1);
+    vm.setTime(1);
     expect(vm.conf.setCount, 500);
     expect(vm.mode, 1);
 

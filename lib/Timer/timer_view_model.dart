@@ -27,9 +27,7 @@ class TimerViewModel extends ChangeNotifier {
   static const REST_FINISH_SOUND = 'girls_voice_fight.mp3';
 
   void start() {
-    print(conf.count.toString());
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      print(conf.count.toString());
       countDownStart();
     });
     _timer.isActive;
@@ -68,10 +66,10 @@ class TimerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setTime(int t, int m) {
+  void setTime(int m) {
     mode = m;
-    conf.setCount = t;
-    conf.count = t;
+    conf.setTime(m);
+
     notifyListeners();
   }
 

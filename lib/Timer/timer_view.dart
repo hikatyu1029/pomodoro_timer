@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro_timer/Component/default_button.dart';
 import 'package:pomodoro_timer/Timer/timer_view_model.dart';
+import 'package:pomodoro_timer/setting/setting_view.dart';
 import 'package:provider/provider.dart';
 
 class TimerView extends StatelessWidget {
@@ -85,20 +86,33 @@ class TimerViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DefaultButton(
-                    onPressed: () => vm.setTime(1500, 0),
+                    onPressed: () => vm.setTime(0),
                     child: Text(
-                      "25 minutes",
+                      "Work Time",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )),
                 DefaultButton(
-                    onPressed: () => vm.setTime(300, 1),
+                    onPressed: () => vm.setTime(1),
                     child: Text(
-                      "5 minutes",
+                      "Rest Time",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )),
               ],
             )
           ],
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: IconButton(
+              iconSize: 50,
+              icon: const Icon(Icons.settings),
+              onPressed: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            // （2） 実際に表示するページ(ウィジェット)を指定する
+                            builder: (context) => SettingView()))
+                  }),
         )
       ],
     );
