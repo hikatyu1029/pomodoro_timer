@@ -64,12 +64,14 @@ class TimerViewModel extends ChangeNotifier {
   void reset() {
     _timer.cancel();
     _doingFlg = false;
+    conf.reset();
     notifyListeners();
   }
 
   void setTime(int t, int m) {
     mode = m;
     conf.setCount = t;
+    conf.count = t;
     notifyListeners();
   }
 
@@ -85,6 +87,12 @@ class TimerViewModel extends ChangeNotifier {
 
   Color setColor() {
     return conf.count == 0 ? Color.fromARGB(255, 155, 255, 159) : Colors.white;
+  }
+
+  Color setMeterColor() {
+    return mode == 0
+        ? Color.fromARGB(255, 255, 151, 186)
+        : const Color.fromARGB(255, 112, 183, 255);
   }
 
   double setHeight(double height) {

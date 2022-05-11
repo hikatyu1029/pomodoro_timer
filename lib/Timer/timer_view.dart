@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro_timer/Component/default_button.dart';
 import 'package:pomodoro_timer/Timer/timer_view_model.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class TimerViewBody extends StatelessWidget {
             })),
             AnimatedContainer(
               duration: const Duration(milliseconds: 1000),
-              color: Colors.yellow[400],
+              color: vm.setMeterColor(),
               height: Provider.of<TimerViewModel>(context)
                   .setHeight(MediaQuery.of(context).size.height),
             ),
@@ -45,10 +46,16 @@ class TimerViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Consumer<TimerViewModel>(builder: (context, value, child) {
-              return Text(
-                Provider.of<TimerViewModel>(context, listen: false).calcCount(),
-                style: TextStyle(fontSize: 52),
-              );
+              return Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: FittedBox(
+                      child: Text(
+                          Provider.of<TimerViewModel>(context, listen: false)
+                              .calcCount(),
+                          style: GoogleFonts.openSans(
+                            fontSize: 300,
+                            fontWeight: FontWeight.w700,
+                          ))));
             }),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -79,10 +86,16 @@ class TimerViewBody extends StatelessWidget {
               children: [
                 DefaultButton(
                     onPressed: () => vm.setTime(1500, 0),
-                    child: Text("25 minutes")),
+                    child: Text(
+                      "25 minutes",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
                 DefaultButton(
                     onPressed: () => vm.setTime(300, 1),
-                    child: Text("5 minutes")),
+                    child: Text(
+                      "5 minutes",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
               ],
             )
           ],
